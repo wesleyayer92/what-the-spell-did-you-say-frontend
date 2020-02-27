@@ -1,0 +1,8 @@
+apply from: '../node_modules/react-native-unimodules/gradle.groovy'
+include ':@react-native-community_voice'
+project(':@react-native-community_voice').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/voice/android')
+includeUnimodulesProjects()
+
+rootProject.name = 'Voice'
+
+include ':app'
