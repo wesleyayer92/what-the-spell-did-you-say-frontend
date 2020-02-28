@@ -24,6 +24,8 @@ PODS:
   - EXPermissions (8.0.0):
     - UMCore
     - UMPermissionsInterface
+  - EXSpeech (8.0.0):
+    - UMCore
   - EXSQLite (8.0.0):
     - UMCore
     - UMFileSystemInterface
@@ -247,12 +249,6 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - RNGestureHandler (1.5.6):
-    - React
-  - RNReanimated (1.4.0):
-    - React
-  - RNScreens (2.0.1):
-    - React
   - UMBarCodeScannerInterface (5.0.0)
   - UMCameraInterface (5.0.0)
   - UMConstantsInterface (5.0.0)
@@ -281,6 +277,7 @@ DEPENDENCIES:
   - EXLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - EXLocation (from `../node_modules/expo-location/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
+  - EXSpeech (from `../node_modules/expo-speech/ios`)
   - EXSQLite (from `../node_modules/expo-sqlite/ios`)
   - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -310,9 +307,6 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler/RNGestureHandler.podspec`)
-  - RNReanimated (from `../node_modules/react-native-reanimated/RNReanimated.podspec`)
-  - RNScreens (from `../node_modules/react-native-screens`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
   - UMConstantsInterface (from `../node_modules/unimodules-constants-interface/ios`)
@@ -361,6 +355,9 @@ EXTERNAL SOURCES:
   EXPermissions:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-permissions/ios"
+  EXSpeech:
+    :path: !ruby/object:Pathname
+    path: "../node_modules/expo-speech/ios"
   EXSQLite:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-sqlite/ios"
@@ -415,12 +412,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNGestureHandler:
-    :podspec: "../node_modules/react-native-gesture-handler/RNGestureHandler.podspec"
-  RNReanimated:
-    :podspec: "../node_modules/react-native-reanimated/RNReanimated.podspec"
-  RNScreens:
-    :path: "../node_modules/react-native-screens"
   UMBarCodeScannerInterface:
     :path: !ruby/object:Pathname
     path: "../node_modules/unimodules-barcode-scanner-interface/ios"
@@ -472,6 +463,7 @@ SPEC CHECKSUMS:
   EXLinearGradient: d5c7fa637f82566318261b7614d325b334ceed08
   EXLocation: e994c186f94340caf1a9ace96b3458a72472553c
   EXPermissions: 3e58e0fbb2e9539ad1ef5617ff02c2356447421e
+  EXSpeech: f01de41ff97429dac910c236a16cd1786bd15b20
   EXSQLite: 3297f74a9d36eb1eb1c2cd9b9037fe01170db15a
   EXWebBrowser: 7e1b05d3f517e685267d51971a21f635f2e6bf06
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
@@ -498,9 +490,6 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
-  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
-  RNScreens: 72136224c789172bb14bb59a51d511e07f773138
   UMBarCodeScannerInterface: 550e7ffd7a789289260bde3d547be29407e75437
   UMCameraInterface: 51e4568d64e77615557afaad9a3acdaad5d32d9f
   UMConstantsInterface: 23d658b73efc2b8090519b32007c3de725339492
@@ -515,6 +504,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: ee5b1ee1056eb338ff2d521ba79460d8cd0bae7d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 04e9bc608a7f7eda73489f9fcd58254b2e8afe22
+PODFILE CHECKSUM: 95dc14694fe0acee891779011fe789dee4de7ec9
 
 COCOAPODS: 1.8.4

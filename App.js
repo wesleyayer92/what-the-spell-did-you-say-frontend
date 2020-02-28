@@ -15,8 +15,8 @@ import {
   Button,
 } from 'react-native';
 import Voice from '@react-native-community/voice';
-import Constants from 'expo-constants';
-import * as Speech from 'expo-speech';
+
+import TextToVoice from './TextToVoice'
 
 let wordSpelledCorrectly = 'blue'
 class App extends Component {
@@ -126,11 +126,11 @@ class App extends Component {
     }
   };
 
-  _answerChecker = async () => {
+  _answerChecker = async (results) => {
     // const answer = this.state.results
-    const answer = 'blue'
+    const answer = 'BLUE'
 
-    if (answer===wordSpelledCorrectly){
+    if (answer===results){
                     console.log('you got it right')
                   } else {
                     console.log('you got it wrong')
@@ -174,10 +174,6 @@ class App extends Component {
           <Text style={styles.welcome}>
             Spelling 🐝
           </Text>
-          <Text style={{
-            color: 'blue'
-          }}>$results {this.state.onSpeechResults}</Text>
-
           <Text style={styles.instructions}>
             Press mike to start Recognition
           </Text>
@@ -223,12 +219,15 @@ class App extends Component {
                 textAlign: 'center',
                 color: '#B0171F',
               }}>{`Error \n ${this.state.error}`}</Text>
-               <Button title="Press to hear some words" onPress={this.speak} />
           </View>
-
-          <Button title='answerChecker'
-          onPress={this._answerChecker}
-          > answerChecker</Button>
+          <View>
+            <Button title='answerChecker'
+            onPress={this._answerChecker}
+            > answerChecker</Button>
+          </View>
+          
+            <TextToVoice />
+        
           
           <TouchableHighlight
             onPress={this._startRecognizing}
@@ -296,7 +295,7 @@ class App extends Component {
               style={{ flex: 1, backgroundColor: 'red' }}>
               <Text style={styles.action}>Cancel</Text>
             </TouchableHighlight>
-         
+
             <TouchableHighlight
               onPress={this._destroyRecognizer}
               style={{ flex: 1, backgroundColor: 'red' }}>
@@ -318,7 +317,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#F5FCFF',
   },
   welcome: {
