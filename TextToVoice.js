@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Button } from 'react-native';
-import Tts from 'react-native-tts';
 
-export default class TextToVoice extends Component {
-  say = () => {
-    Tts.speak('definition');
-  }
-  
-  render() {
+export default function TextToVoice({sayWord, sayDefinition, sayPartOfSpeech}) {
     return (
       <View>
-        <Button title="click here for some speech yo" onPress={this.say}></Button>
+        <Button title='Word' onPress={sayWord} />
+        <Button title='Definition' onPress={sayDefinition} />
+        <Button title='Part of Speech' onPress={sayPartOfSpeech} />
       </View>
     );
-  }
 }
 
