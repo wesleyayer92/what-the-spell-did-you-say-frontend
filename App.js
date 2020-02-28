@@ -267,9 +267,12 @@ class App extends Component {
           <ScrollView style={{ marginBottom: 42 }}>
             {this.state.results.map((result, index) => {
               return (
+                <>
                 <Text key={`result-${index}`} style={styles.stat}>
                   {result}
                 </Text>
+                <Text>Correct</Text>
+                </>
               );
             })}
           </ScrollView>
