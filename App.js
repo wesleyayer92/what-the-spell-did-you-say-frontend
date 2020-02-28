@@ -14,13 +14,19 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import Voice from '@react-native-community/voice';
 
-import TextToVoice from './TextToVoice'
+import Voice from '@react-native-community/voice';
+import Tts from 'react-native-tts';
+import axios from 'axios';
+import TextToVoice from './TextToVoice';
+
+const ENDPOINT = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/extrapolate?key=039b95f8-c753-495b-8af0-5bf5f110cde2`;
 
 class App extends Component {
   state = {
-    word: 'blue',
+    word: '',
+    definition: '',
+    partOfSpeech: '',
     pitch: '',
     error: '',
     end: '',
@@ -39,6 +45,33 @@ class App extends Component {
     Voice.onSpeechPartialResults = this.onSpeechPartialResults;
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged;
   }
+
+  ////////// text to speech methods //////////
+
+  sayWord = () => {
+    Tts.speak(this.state.word);
+  }
+
+  sayDefinition = () => {
+    Tts.speak(this.state.definition);
+  }
+
+  sayPartofSpeech = () => {
+    Tts.speak(this.state.partOfSpeech);
+  }
+
+  makeApiRequest = () => {
+    axios.get(ENDPOINT)
+        .then(r => {
+          this.setState({
+            word: r.data[0].meta.id,
+            definition: r.data[0].shortdef[0],
+            partOfSpeech: r.data[0].fl,
+          }, () => console.log(r.data[0]));
+        })
+  }
+
+  ///////////////////////////////////////////////
 
   componentWillUnmount() {
     //destroy the process after switching the screen 
@@ -164,6 +197,7 @@ class App extends Component {
   };
 
   render() {
+    this.makeApiRequest();
     return (
       <SafeAreaView style={{ flex: 1 ,backgroundColor:'yellow'}}>
         <View style={styles.container}>
@@ -223,7 +257,12 @@ class App extends Component {
             {/* {this.state.results == this.state.word && <Text>CORRECT!!!!</Text>} */}
           </View>
           
-            <TextToVoice />
+          
+            <TextToVoice 
+              sayWord={this.sayWord}
+              sayDefinition={this.sayDefinition}
+              sayPartOfSpeech={this.sayPartofSpeech}
+            />
         
           
           <TouchableHighlight
