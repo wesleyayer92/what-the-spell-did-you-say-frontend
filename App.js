@@ -18,9 +18,9 @@ import Voice from '@react-native-community/voice';
 
 import TextToVoice from './TextToVoice'
 
-let wordSpelledCorrectly = 'BLUE'
 class App extends Component {
   state = {
+    word: 'blue',
     pitch: '',
     error: '',
     end: '',
@@ -47,7 +47,7 @@ class App extends Component {
 
   onSpeechStart = e => {
     //Invoked when .start() is called without error
-    console.log('onSpeechStart: ', e);
+    // console.log('onSpeechStart: ', e);
     this.setState({
       started: '√',
     });
@@ -55,7 +55,7 @@ class App extends Component {
 
   onSpeechEnd = e => {
     //Invoked when SpeechRecognizer stops recognition
-    console.log('onSpeechEnd: ', e);
+    // console.log('onSpeechEnd: ', e);
     this.setState({
       end: '√',
     });
@@ -63,7 +63,7 @@ class App extends Component {
 
   onSpeechError = e => {
     //Invoked when an error occurs. 
-    console.log('onSpeechError: ', e);
+    // console.log('onSpeechError: ', e);
     this.setState({
       error: JSON.stringify(e.error),
     });
@@ -71,7 +71,7 @@ class App extends Component {
 
   onSpeechResults = e => {
     //Invoked when SpeechRecognizer is finished recognizing
-    console.log('onSpeechResults: ', e);
+    // console.log('onSpeechResults: ', e);
     this.setState({
       results: e.value,
     }, console.log(this.state.results));
@@ -79,7 +79,7 @@ class App extends Component {
 
   onSpeechPartialResults = e => {
     //Invoked when any results are computed
-    console.log('onSpeechPartialResults: ', e);
+    // console.log('onSpeechPartialResults: ', e);
     this.setState({
       partialResults: e.value,
     });
@@ -87,7 +87,7 @@ class App extends Component {
 
   onSpeechVolumeChanged = e => {
     //Invoked when pitch that is recognized changed
-    console.log('onSpeechVolumeChanged: ', e);
+    // console.log('onSpeechVolumeChanged: ', e);
     this.setState({
       pitch: e.value,
     });
@@ -126,7 +126,7 @@ class App extends Component {
     // const answer = this.state.results
     const answer = 'BLUE'
 
-    if (answer===results){
+    if (answer==results){
                     console.log('you got it right')
                   } else {
                     console.log('you got it wrong')
@@ -218,8 +218,9 @@ class App extends Component {
           </View>
           <View>
             <Button title='answerChecker'
-            onPress={this._answerChecker}
-            > answerChecker</Button>
+            onPress={this._answerChecker(this.state.results)}
+            >answerChecker</Button>
+            {/* {this.state.results == this.state.word && <Text>CORRECT!!!!</Text>} */}
           </View>
           
             <TextToVoice />
