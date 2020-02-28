@@ -18,7 +18,7 @@ import Voice from '@react-native-community/voice';
 
 import TextToVoice from './TextToVoice'
 
-let wordSpelledCorrectly = 'blue'
+let wordSpelledCorrectly = 'BLUE'
 class App extends Component {
   state = {
     pitch: '',
@@ -44,11 +44,7 @@ class App extends Component {
     //destroy the process after switching the screen 
     Voice.destroy().then(Voice.removeAllListeners);
   }
-  speak() {
-    var thingToSay = '0';
-    Speech.speak(thingToSay);
-    console.log('herewego')
-}
+
   onSpeechStart = e => {
     //Invoked when .start() is called without error
     console.log('onSpeechStart: ', e);
@@ -78,7 +74,7 @@ class App extends Component {
     console.log('onSpeechResults: ', e);
     this.setState({
       results: e.value,
-    });
+    }, console.log(this.state.results));
   };
 
   onSpeechPartialResults = e => {

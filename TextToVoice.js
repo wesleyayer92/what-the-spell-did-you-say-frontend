@@ -5,7 +5,7 @@ import * as Speech from 'expo-speech';
 
 export default class TextToVoice extends React.Component {
   speak() {
-    var thingToSay = '0';
+    var thingToSay = 'does this work';
     Speech.speak(thingToSay);
   }
 
