@@ -1,4 +1,4 @@
-
+// https://stackoverflow.com/questions/49721337/expo-anyway-of-adding-speech-to-text
 
 
 
@@ -12,9 +12,13 @@ import {
   Image,
   TouchableHighlight,
   ScrollView,
+  Button,
 } from 'react-native';
 import Voice from '@react-native-community/voice';
+import Constants from 'expo-constants';
+import * as Speech from 'expo-speech';
 
+let wordSpelledCorrectly = 'blue'
 class App extends Component {
   state = {
     pitch: '',
@@ -24,7 +28,7 @@ class App extends Component {
     results: [],
     partialResults: [],
   };
-
+  
   constructor(props) {
     super(props);
     //Setting callbacks for the process status
@@ -40,7 +44,11 @@ class App extends Component {
     //destroy the process after switching the screen 
     Voice.destroy().then(Voice.removeAllListeners);
   }
-
+  speak() {
+    var thingToSay = '0';
+    Speech.speak(thingToSay);
+    console.log('herewego')
+}
   onSpeechStart = e => {
     //Invoked when .start() is called without error
     console.log('onSpeechStart: ', e);
@@ -118,6 +126,19 @@ class App extends Component {
     }
   };
 
+  _answerChecker = async () => {
+    // const answer = this.state.results
+    const answer = 'blue'
+
+    if (answer===wordSpelledCorrectly){
+                    console.log('you got it right')
+                  } else {
+                    console.log('you got it wrong')
+                  }
+                  }
+                  
+  
+
   _cancelRecognizing = async () => {
     //Cancels the speech recognition
     try {
@@ -148,28 +169,35 @@ class App extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 ,backgroundColor:'yellow'}}>
         <View style={styles.container}>
           <Text style={styles.welcome}>
-            Example of Speech to Text conversion / Voice Recognition
+            Spelling 🐝
           </Text>
+          <Text style={{
+            color: 'blue'
+          }}>$results {this.state.onSpeechResults}</Text>
+
           <Text style={styles.instructions}>
             Press mike to start Recognition
           </Text>
           <View
             style={{
+              // backgroundColor:'black',
               flexDirection: 'row',
               justifyContent: 'space-between',
               paddingVertical: 10,
             }}>
             <Text
               style={{
+                backgroundColor:'yellow',
                 flex: 1,
                 textAlign: 'center',
                 color: '#B0171F',
               }}>{`Started: ${this.state.started}`}</Text>
             <Text
               style={{
+                backgroundColor:'yellow',
                 flex: 1,
                 textAlign: 'center',
                 color: '#B0171F',
@@ -177,12 +205,14 @@ class App extends Component {
           </View>
           <View
             style={{
+              backgroundColor:'yellow',
               flexDirection: 'row',
               justifyContent: 'space-between',
               paddingVertical: 10,
             }}>
             <Text
               style={{
+                backgroundColor:'yellow',
                 flex: 1,
                 textAlign: 'center',
                 color: '#B0171F',
@@ -193,10 +223,16 @@ class App extends Component {
                 textAlign: 'center',
                 color: '#B0171F',
               }}>{`Error \n ${this.state.error}`}</Text>
+               <Button title="Press to hear some words" onPress={this.speak} />
           </View>
+
+          <Button title='answerChecker'
+          onPress={this._answerChecker}
+          > answerChecker</Button>
+          
           <TouchableHighlight
             onPress={this._startRecognizing}
-            style={{ marginVertical: 20 }}>
+            style={{ marginVertical: 50, backgroundColor:'yellow' }}>
             <Image
               style={styles.button}
               source={{
@@ -208,7 +244,7 @@ class App extends Component {
           <Text
             style={{
               textAlign: 'center',
-              color: '#B0171F',
+              color: 'black',
               marginBottom: 1,
               fontWeight: '700',
             }}>
@@ -220,8 +256,9 @@ class App extends Component {
                 <Text
                   key={`partial-result-${index}`}
                   style={{
+                    backgroundColor:'yellow',
                     textAlign: 'center',
-                    color: '#B0171F',
+                    color: 'black',
                     marginBottom: 1,
                     fontWeight: '700',
                   }}>
@@ -240,8 +277,10 @@ class App extends Component {
               );
             })}
           </ScrollView>
+          
           <View
             style={{
+              backgroundColor:'yellow',
               flexDirection: 'row',
               alignItems: 'space-between',
               position: 'absolute',
@@ -257,6 +296,7 @@ class App extends Component {
               style={{ flex: 1, backgroundColor: 'red' }}>
               <Text style={styles.action}>Cancel</Text>
             </TouchableHighlight>
+         
             <TouchableHighlight
               onPress={this._destroyRecognizer}
               style={{ flex: 1, backgroundColor: 'red' }}>
@@ -278,6 +318,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -295,14 +336,20 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#0000',
     marginBottom: 5,
   },
   stat: {
     textAlign: 'center',
-    color: '#B0171F',
+    color: 'black',
     marginBottom: 1,
     marginTop: 30,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 export default App;
