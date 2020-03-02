@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native';
-import Quiz from './Quiz';
-export default class App extends Component {
-  render() {
-    return (
-      <View style={{padding: 50}}>
-        <Quiz />
-      </View>
-    );
-  }
+import React, { Component } from 'react';
+import { AppRegistry, View, Text } from 'react-native';
+import Routes from './components/Routes'
+
+class reactTutorialApp extends Component {
+   render() {
+      return (
+         <Routes />
+      )
+   }
 }
+export default reactTutorialApp
+AppRegistry.registerComponent('reactTutorialApp', () => reactTutorialApp)
