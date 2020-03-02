@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import {
     Text,
     View,
+    TouchableO
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import SpeechToText from './SpeechToText';
 import TextToVoice from './TextToVoice';
@@ -47,7 +49,7 @@ export default class Quiz extends Component {
     sayPartofSpeech = () => {
         Tts.speak(this.state.partOfSpeech);
     }
-    
+
     makeApiRequest = () => {
         axios.get(ENDPOINT)
             .then(r => {
