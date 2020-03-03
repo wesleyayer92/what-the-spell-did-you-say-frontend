@@ -27,5 +27,6 @@ class reactTutorialApp extends Component {
       )
    }
 }
+console.disableYellowBox = true;
 export default reactTutorialApp
 AppRegistry.registerComponent('reactTutorialApp', () => reactTutorialApp)
