@@ -13,7 +13,7 @@ import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 import axios from 'axios';
 
-const ENDPOINT = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/usurper?key=039b95f8-c753-495b-8af0-5bf5f110cde2`;
+const ENDPOINT = `http://localhost:9000/testAPI`;
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -54,10 +54,10 @@ export default class Quiz extends Component {
         axios.get(ENDPOINT)
             .then(r => {
               this.setState({
-                word: r.data[0].meta.id,
-                definition: r.data[0].shortdef[0],
-                partOfSpeech: r.data[0].fl,
-              }, () => console.log(this.state.word));
+                word: r.data.word,
+                definition: r.data.definition,
+                partOfSpeech: r.data.partofspeech,
+              }, () => console.log(r.data));
             })
     }
     

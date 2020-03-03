@@ -20,10 +20,10 @@ class reactTutorialApp extends Component {
 
    render() {
       return (
-         <View>
-            <Text className="App-intro">;{this.state.apiResponse}</Text>
+         // <View>
+         //    <Text className="App-intro">;{this.state.apiResponse}</Text>
             <Routes />
-         </View>
+         // </View>
       )
    }
 }
