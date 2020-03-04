@@ -23,7 +23,8 @@ export default function SpeechToText({
     end,
     started,
     results,
-    partialResults
+    partialResults,
+    isCorrect
 
 }) {
 
@@ -45,10 +46,10 @@ export default function SpeechToText({
             <Text>{`Error \n ${error}`}</Text>
           </View>
           <View>
-            <Button title='answerChecker'
-            // onPress={this._answerChecker(this.state.results)}
-            >answerChecker</Button>
-            {/* {this.state.results == this.state.word && <Text>CORRECT!!!!</Text>} */}
+            <Button 
+              title={isCorrect.toString()}
+              onPress={() => _answerChecker(results)}
+            />
           </View>
           
           
@@ -68,8 +69,8 @@ export default function SpeechToText({
               );
             })}
           </ScrollView>
-          <Text>Results</Text>
-          {word.toUpperCase() == results ? <Text>Correct</Text> : <Text>nothing or not correct</Text>}
+          <Text>CORRECT OR NOT</Text>
+          {word.toUpperCase() == results ? <Text>{isCorrect.toString()}</Text> : <Text>nothing or not correct</Text>}
           <ScrollView>
             {results.map((result, index) => {
               return (
