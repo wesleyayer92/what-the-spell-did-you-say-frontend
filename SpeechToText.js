@@ -10,6 +10,7 @@ import {
     ScrollView,
     Button,
 } from 'react-native';
+import Axios from 'axios';
 
 export default function SpeechToText({ 
     _startRecognizing,
@@ -24,15 +25,21 @@ export default function SpeechToText({
     started,
     results,
     partialResults,
-    isCorrect
+    attemptCorrect
 
 }) {
+
+    postRequest = () => {
+      const url = `http://localhost:9000/testAPI`;
+      const data = {attemptCorrect};
+      Axios.post(url, data);
+    }
 
     return (
       <SafeAreaView >
         <View>
           <Text>
-            Spelling 🐝
+            🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝
           </Text>
           <Text>
             Press mike to start Recognition
@@ -47,8 +54,12 @@ export default function SpeechToText({
           </View>
           <View>
             <Button 
-              title={isCorrect.toString()}
+              title={attemptCorrect.toString()}
               onPress={() => _answerChecker(results)}
+            />
+            <Button 
+              title="POST"
+              onPress={() => postRequest()}
             />
           </View>
           
@@ -70,7 +81,7 @@ export default function SpeechToText({
             })}
           </ScrollView>
           <Text>CORRECT OR NOT</Text>
-          {word.toUpperCase() == results ? <Text>{isCorrect.toString()}</Text> : <Text>nothing or not correct</Text>}
+          {word.toUpperCase() == results ? <Text>{attemptCorrect.toString()}</Text> : <Text>nothing or not correct</Text>}
           <ScrollView>
             {results.map((result, index) => {
               return (
