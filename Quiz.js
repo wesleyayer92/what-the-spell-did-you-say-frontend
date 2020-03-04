@@ -35,7 +35,7 @@ export default class Quiz extends Component {
             started: '',
             results: [],
             partialResults: [],
-            isCorrect: false
+            attemptCorrect: false
         };
     }
 
@@ -149,9 +149,11 @@ export default class Quiz extends Component {
     _answerChecker = async (results) => {
         // const answer = this.state.results
         let answer = this.state.word.toUpperCase();
+        console.log(`ANSWER: ${answer}`);
+        console.log(`RESULTS: ${results}`);
         if (answer == results) {
           this.setState({
-            isCorrect: true
+            attemptCorrect: true
           });
         }
     }            
@@ -207,7 +209,7 @@ export default class Quiz extends Component {
                   started={this.state.started}
                   results={this.state.results}
                   partialResults={this.state.partialResults}
-                  isCorrect={this.state.isCorrect}
+                  attemptCorrect={this.state.attemptCorrect}
                 />
             </View>
         );
