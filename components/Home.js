@@ -18,7 +18,7 @@ const _Instructions = () => {
 
       <View >
          <View style= {{color: 'red', backgroundColor:'black'}}>
-            <TouchableOpacity style = {{ margin: 128 }} onPress = {goToQuiz}>
+            <TouchableOpacity style = {{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black', margin: 128}} onPress = {goToQuiz}>
                <Text style={{color: 'yellow'}}>Welcome to the Spelling Game</Text>
             </TouchableOpacity>
          </View>
@@ -29,6 +29,11 @@ const _Instructions = () => {
       <HomeModal />
       </View>
       
+
+//       <TouchableOpacity style = {{ margin: 128 }} onPress = {goToQuiz}>
+//          <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black'}}>This is HOME!</Text>
+//       </TouchableOpacity>
+
    )
 }
 export default Home
