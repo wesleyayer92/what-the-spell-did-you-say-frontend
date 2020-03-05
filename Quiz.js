@@ -54,9 +54,9 @@ export default class Quiz extends Component {
         axios.get(ENDPOINT)
             .then(r => {
               this.setState({
-                word: r.data.word,
-                definition: r.data.definition,
-                partOfSpeech: r.data.partofspeech,
+                word: r.data[0].word,
+                definition: r.data[0].definition,
+                partOfSpeech: r.data[0].partofspeech,
               }, () => console.log(r.data));
             })
     }
