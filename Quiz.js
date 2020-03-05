@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
     Text,
     View,
-    TouchableO
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -63,6 +62,10 @@ export default class Quiz extends Component {
     }
     
       ///////////////////////////////////////////////
+    
+    componentDidMount() {
+      this.makeApiRequest();
+    }
     
     componentWillUnmount() {
         //destroy the process after switching the screen 
@@ -189,28 +192,32 @@ export default class Quiz extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{flex: 1, justifyContent: 'space-between'}}>
+              <View style={{flex: 3, backgroundColor: 'black'}}>
                 <TextToVoice 
                   sayWord={this.sayWord}
                   sayDefinition={this.sayDefinition}
                   sayPartOfSpeech={this.sayPartofSpeech}
-                  makeApiRequest={this.makeApiRequest}
+                  // makeApiRequest={this.makeApiRequest}
                 />
-                <SpeechToText 
+              </View>
+              <View style={{flex: 2, backgroundColor: 'darkgrey', padding: 30}}>
+                <SpeechToText
                   _startRecognizing={this._startRecognizing}
                   _stopRecognizing={this._stopRecognizing}
-                  _cancelRecognizing={this._cancelRecognizing}
+                  // _cancelRecognizing={this._cancelRecognizing}
                   _destroyRecognizer={this._destroyRecognizer}
                   _answerChecker={this._answerChecker}
                   word={this.state.word}
-                  pitch={this.state.pitch}
-                  error={this.state.error}
-                  end={this.state.end}
-                  started={this.state.started}
+                  // pitch={this.state.pitch}
+                  // error={this.state.error}
+                  // end={this.state.end}
+                  // started={this.state.started}
                   results={this.state.results}
-                  partialResults={this.state.partialResults}
+                  // partialResults={this.state.partialResults}
                   attemptCorrect={this.state.attemptCorrect}
                 />
+              </View>  
             </View>
         );
     }
