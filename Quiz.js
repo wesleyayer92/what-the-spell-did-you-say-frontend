@@ -12,7 +12,7 @@ import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 import axios from 'axios';
 
-const ENDPOINT = `http://localhost:9000/testAPI`;
+const ENDPOINT = `http://localhost:9000/`;
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -23,18 +23,20 @@ export default class Quiz extends Component {
         Voice.onSpeechResults = this.onSpeechResults;
         Voice.onSpeechPartialResults = this.onSpeechPartialResults;
         Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged;
-        
+
         this.state = {
+            array: '',
             word: '',
             definition: '',
             partOfSpeech: '',
+            index: 0,
             pitch: '',
             error: '',
             end: '',
             started: '',
             results: [],
             partialResults: [],
-            attemptCorrect: false
+            attemptCorrect: false,
         };
     }
 
@@ -50,22 +52,46 @@ export default class Quiz extends Component {
         Tts.speak(this.state.partOfSpeech);
     }
 
-    makeApiRequest = () => {
-        axios.get(ENDPOINT)
-            .then(r => {
-              this.setState({
-                word: r.data[0].word,
-                definition: r.data[0].definition,
-                partOfSpeech: r.data[0].partofspeech,
-              }, () => console.log(r.data));
-            })
+    nextWord = () => {
+      this.setState({
+        index: this.state.index + 1,
+        word: this.state.array[this.state.index + 1].word,
+        wordId: this.state.array[this.state.index + 1].wordid,
+        definition: this.state.array[this.state.index + 1].definition,
+        partOfSpeech: this.state.array[this.state.index + 1].partofspeech,
+        results: ''
+      })
     }
+
+    makeApiRequest = () => {
+      axios.get(ENDPOINT)
+          .then(r => {
+            this.setState({
+              array: r.data,
+              word: r.data[0].word,
+              wordId: r.data[0].wordid,
+              definition: r.data[0].definition,
+              partOfSpeech: r.data[0].partofspeech
+            })
+          })
+    }
+
+    // makeApiRequest = () => {
+    //     axios.get(ENDPOINT)
+    //         .then(r => {
+    //           this.setState({
+    //             word: r.data[this.state.index].word,
+    //             definition: r.data[this.state.index].definition,
+    //             partOfSpeech: r.data[this.state.index].partofspeech,
+    //           }, () => console.log(r.data));
+    //         });
+    // }
     
       ///////////////////////////////////////////////
     
-    componentDidMount() {
-      this.makeApiRequest();
-    }
+    // componentDidMount() {
+    //   console.log(this.state);
+    // }
     
     componentWillUnmount() {
         //destroy the process after switching the screen 
@@ -159,8 +185,7 @@ export default class Quiz extends Component {
             attemptCorrect: true
           });
         }
-    }            
-      
+    }              
     
     _cancelRecognizing = async () => {
         //Cancels the speech recognition
@@ -191,6 +216,8 @@ export default class Quiz extends Component {
     };
 
     render() {
+      console.log('===========================STATE=============================')
+      console.log(this.state)
         return (
             <View style={{flex: 1, justifyContent: 'space-between'}}>
               <View style={{flex: 3, backgroundColor: 'black'}}>
@@ -198,23 +225,19 @@ export default class Quiz extends Component {
                   sayWord={this.sayWord}
                   sayDefinition={this.sayDefinition}
                   sayPartOfSpeech={this.sayPartofSpeech}
-                  // makeApiRequest={this.makeApiRequest}
+                  makeApiRequest={this.makeApiRequest}
                 />
               </View>
               <View style={{flex: 2, backgroundColor: 'darkgrey', padding: 30}}>
                 <SpeechToText
                   _startRecognizing={this._startRecognizing}
                   _stopRecognizing={this._stopRecognizing}
-                  // _cancelRecognizing={this._cancelRecognizing}
                   _destroyRecognizer={this._destroyRecognizer}
                   _answerChecker={this._answerChecker}
+                  nextWord={this.nextWord}
                   word={this.state.word}
-                  // pitch={this.state.pitch}
-                  // error={this.state.error}
-                  // end={this.state.end}
-                  // started={this.state.started}
+                  wordId={this.state.wordId}
                   results={this.state.results}
-                  // partialResults={this.state.partialResults}
                   attemptCorrect={this.state.attemptCorrect}
                 />
               </View>  
