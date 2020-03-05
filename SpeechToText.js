@@ -11,22 +11,22 @@ import {
     Button,
 } from 'react-native';
 import Axios from 'axios';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function SpeechToText({ 
     _startRecognizing,
     _stopRecognizing,
-    _cancelRecognizing,
+    // _cancelRecognizing,
     _destroyRecognizer,
     _answerChecker,
     word,
-    pitch,
-    error,
-    end,
-    started,
+    // pitch,
+    // error,
+    // end,
+    // started,
     results,
-    partialResults,
+    // partialResults,
     attemptCorrect
-
 }) {
 
     postRequest = () => {
@@ -34,11 +34,11 @@ export default function SpeechToText({
       const data = {attemptCorrect};
       Axios.post(url, data);
     }
-
+    
     return (
-      <SafeAreaView >
+      <SafeAreaView>
         <View>
-          <Text>
+          {/* <Text>
             🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝
           </Text>
           <Text>
@@ -51,24 +51,17 @@ export default function SpeechToText({
           <View>
             <Text>{`Pitch \n ${pitch}`}</Text>
             <Text>{`Error \n ${error}`}</Text>
-          </View>
-          <View>
-            <Button 
-              title={attemptCorrect.toString()}
-              onPress={() => _answerChecker(results)}
-            />
-            <Button 
-              title="POST"
-              onPress={() => postRequest()}
-            />
-          </View>
+          </View> */}
+          <Text style={results && word == results ? [styles.button, {backgroundColor: 'green', borderColor: 'yellow', color: 'yellow', marginBottom: 5}] : [styles.button, {backgroundColor: 'white', color: 'black', marginBottom: 5, borderColor: 'black'}]}>{results}</Text>
           
-          
-            
-          
-          <Button title='START RECORDING' onPress={_startRecognizing} />
-          
-          <Text>
+            <TouchableOpacity onPress={() => {_answerChecker(results); postRequest();}}>
+              <Text style={styles.button}>SUBMIT</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={_startRecognizing}>
+              <Text style={[styles.button, {backgroundColor: 'blue'}]}>Start Recording</Text>
+            </TouchableOpacity>
+
+          {/* <Text>
             Partial Results
           </Text>
           <ScrollView>
@@ -90,64 +83,37 @@ export default function SpeechToText({
                 </Text>
               );
             })}
-          </ScrollView>
-          
-          <View>
+          </ScrollView> */}
+
             <TouchableHighlight onPress={_stopRecognizing}>
-              <Text>Stop</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={_cancelRecognizing}>
-              <Text>Cancel</Text>
+              <Text style={[styles.button, {backgroundColor: 'orange'}]}>Stop</Text>
             </TouchableHighlight>
 
+            {/* i don't see what the purpose of this button is
+             so im commenting it out for now */}
+            {/* <TouchableHighlight onPress={_cancelRecognizing}>
+              <Text>Cancel</Text>
+            </TouchableHighlight> */}
+
             <TouchableHighlight onPress={_destroyRecognizer}>
-              <Text>Destroy</Text>
+              <Text style={[styles.button, {backgroundColor: 'red'}]}>Reset</Text>
             </TouchableHighlight>
-          </View>
         </View>
       </SafeAreaView>
     );
   }
 
-// const styles = StyleSheet.create({
-//   button: {
-//     width: 50,
-//     height: 50,
-//   },
-//   container: {
-//     flex: 1,
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   action: {
-//     width: '100%',
-//     textAlign: 'center',
-//     color: 'white',
-//     paddingVertical: 8,
-//     marginVertical: 5,
-//     fontWeight: 'bold',
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#0000',
-//     marginBottom: 5,
-//   },
-//   stat: {
-//     textAlign: 'center',
-//     color: 'black',
-//     marginBottom: 1,
-//     marginTop: 30,
-//   },
-//   paragraph: {
-//     margin: 24,
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'purple',
+    borderColor: 'white',
+    borderWidth: 5,
+    borderRadius: 12,
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    padding: 12,
+    textAlign:'center',
+  }
+});
