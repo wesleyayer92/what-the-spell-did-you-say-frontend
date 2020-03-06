@@ -53,14 +53,18 @@ export default class Quiz extends Component {
     }
 
     nextWord = () => {
-      this.setState({
-        index: this.state.index + 1,
-        word: this.state.array[this.state.index + 1].word,
-        wordId: this.state.array[this.state.index + 1].wordid,
-        definition: this.state.array[this.state.index + 1].definition,
-        partOfSpeech: this.state.array[this.state.index + 1].partofspeech,
-        results: ''
-      })
+      if (this.state.index === 5) {
+        Actions.scorecard();
+      } else {
+        this.setState({
+          index: this.state.index + 1,
+          word: this.state.array[this.state.index + 1].word,
+          wordId: this.state.array[this.state.index + 1].wordid,
+          definition: this.state.array[this.state.index + 1].definition,
+          partOfSpeech: this.state.array[this.state.index + 1].partofspeech,
+          results: ''
+        })
+      }
     }
 
     makeApiRequest = () => {
@@ -72,7 +76,7 @@ export default class Quiz extends Component {
               wordId: r.data[0].wordid,
               definition: r.data[0].definition,
               partOfSpeech: r.data[0].partofspeech
-            })
+            }, console.log(this.state))
           })
     }
 
@@ -216,8 +220,8 @@ export default class Quiz extends Component {
     };
 
     render() {
-      console.log('===========================STATE=============================')
-      console.log(this.state)
+      // console.log('===========================STATE=============================')
+      // console.log(this.state)
         return (
             <View style={{flex: 1, justifyContent: 'space-between'}}>
               <View style={{flex: 3, backgroundColor: 'black'}}>
