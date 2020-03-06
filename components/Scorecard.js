@@ -1,43 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity, Text, View, FlatList } from 'react-native';
 // import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 const ENDPOINT = 'http://localhost:9000/scorecard';
 
-// unsure of how to make this work quite yet but on the right track
-// this function doesnt work properly
-function getScorecard() {
-    axios.get(ENDPOINT)
-.then(r => r.data.map(item => <Text>item</Text>))
-}
+class Scorecard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            totalCorrect: 0
+        }
+    }
 
-const Scorecard = () => {
-    // const goToScorecard = () => {
-    //    Actions.scorecard()
-    // }
-    return (
-        <View>
-            <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'green', backgroundColor: 'black'}}>This is SCORECARD!</Text>
-            {/* <FlatList 
-                data={[
-                    {key: 'oi'}
-            ]}
-        renderItem={({item}) => <Text>{item.key}</Text>}
-            >
-
-            </FlatList> */}
-              {/* <Text>{getScorecard()}</Text> */}
-       {/* <TouchableOpacity 
-            style = {{ margin: 128 }} 
-            onPress = {() => getScorecard()}
-        >
-            <Text>PRESS FOR SOME SCORESTUFF</Text>
-        </TouchableOpacity>
+    async componentDidMount() {
+        await axios.get(ENDPOINT)
+            .then(r => this.setState({
+                totalCorrect: r.data
+            }))
+            console.log('line 20');
+            console.log(this.state.totalCorrect);
+    }
+    
+    render() {
+        // console.log(this.state.array[0].attemptcorrect)
+        // console.log(this.state.array[0].attemptcorrect)
+        return (
             <View>
-                {getScorecard()}
-            </View> */}
-        </View>
-    );
+                <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'green', backgroundColor: 'black'}}>This is SCORECARD!</Text>
+                <View>
+                    
+                    {/* {this.state.array.length > 0 && this.state.array.map(item => <Text>{JSON.stringify(item.attemptcorrect)}</Text>)} */}
+                    <Text>{this.state.totalCorrect}%</Text>
+                </View>
+            </View>
+        );
+    }
 }
 
 export default Scorecard
