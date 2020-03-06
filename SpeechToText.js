@@ -9,6 +9,8 @@ import {
 import Axios from 'axios';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import Microphone from './components/Microphone';
+
 export default function SpeechToText({ 
     _startRecognizing,
     _stopRecognizing,
@@ -22,7 +24,7 @@ export default function SpeechToText({
 }) {
 
     postRequest = () => {
-      const url = `http://localhost:9000/testAPI`;
+      const url = `http://localhost:9000`;
       const data = {attemptCorrect, wordId};
       Axios.post(url, data);
     }
@@ -32,6 +34,8 @@ export default function SpeechToText({
         <View>
           <Text style={results && word == results ? [styles.button, {backgroundColor: 'green', borderColor: 'yellow', color: 'yellow', marginBottom: 5}] : [styles.button, {backgroundColor: 'white', color: 'black', marginBottom: 5, borderColor: 'black'}]}>{results}</Text>
           
+          {/* <Microphone onPress={_startRecognizing}/> */}
+
           <TouchableOpacity onPress={() => {_answerChecker(results); postRequest();}}>
             <Text style={styles.button}>SUBMIT</Text>
           </TouchableOpacity>
