@@ -23,10 +23,10 @@ export default function SpeechToText({
     attemptCorrect
 }) {
 
-    postRequest = () => {
+    postRequest = async() => {
       const url = `http://localhost:9000`;
       const data = {attemptCorrect, wordId};
-      Axios.post(url, data);
+      await Axios.post(url, data);
     }
     
     return (

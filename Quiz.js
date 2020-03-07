@@ -182,7 +182,7 @@ export default class Quiz extends Component {
         }
     };
     
-    _answerChecker = async (results) => {
+    _answerChecker = (results) => {
         // const answer = this.state.results
         let answer = this.state.word.toUpperCase();
         console.log(`ANSWER: ${answer}`);
@@ -190,7 +190,7 @@ export default class Quiz extends Component {
         if (answer == results) {
           this.setState({
             attemptCorrect: true
-          });
+          }, () => console.log(this.state.attemptCorrect));
         }
     }              
     
