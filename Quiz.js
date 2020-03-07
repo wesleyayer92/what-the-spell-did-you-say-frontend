@@ -54,6 +54,9 @@ export default class Quiz extends Component {
 
     nextWord = () => {
       if (this.state.index === 5) {
+        this.setState({
+          index: 0
+        });
         Actions.scorecard();
       } else {
         this.setState({
