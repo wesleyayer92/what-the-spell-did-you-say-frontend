@@ -14,18 +14,18 @@ import TheBee from '../assets/bee.json';
 import HomeModal from './HomeModal';
 
 import axios from 'axios';
-const ENDPOINT = 'http://localhost:9000/signup';
 
 class Home extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         name: 'Casey',
-         emailUsername: 'casey@gmail.com',
-         hash: '123'
+         name: '',
+         emailUsername: '',
+         hash: '',
+         loggedIn: false
       };
    }
-   
+
    goToQuiz = () => {
       Actions.quiz()
    }
@@ -40,15 +40,21 @@ class Home extends Component {
       await axios.post(url, data);
    }
 
-   userLogin = () => {
-      // ?????????????
+   userLogin = async(emailUsername, hash) => {
+      const url = `http://localhost:9000/login`;
+      const data = {emailUsername, hash};
+      const response = await axios.post(url, data);
+      console.log(response.data);
+      if (response.data == 'ITS WORKING') {
+         this.setState({
+            loggedIn: true
+         })
+      } else {
+         this.setState({
+            loggedIn: false
+         })
+      }
    }
-
-
-   
-
-
-
 
    // return (
    //    <View>
@@ -83,28 +89,51 @@ class Home extends Component {
             <View style={{flex: 1, backgroundColor: 'yellow'}}>
                <Text style={{textAlign: 'center'}}>SIGN UP</Text>
                <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="name"></TextInput>   
+                  <TextInput 
+                     onChangeText={name => this.setState({name})} 
+                     style={styles.input} 
+                     value={this.state.name} 
+                     placeholder="name"
+                  />   
                </TouchableOpacity>
                <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="email"></TextInput>
+                  <TextInput 
+                     onChangeText={emailUsername => this.setState({emailUsername})} 
+                     style={styles.input} 
+                     value={this.state.emailUsername} 
+                     placeholder="email"
+                  />
                </TouchableOpacity>
                <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="password"></TextInput>
+                  <TextInput 
+                     onChangeText={hash => this.setState({hash})} 
+                     style={styles.input} 
+                     value={this.state.hash} 
+                     placeholder="password"
+                  />
                </TouchableOpacity>
-               <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername, this.state.hash)} />
+               <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername.toLowerCase(), this.state.hash)} />
    
                <Text style={{textAlign: 'center'}}>LOGIN</Text>
                <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="name"></TextInput>
+                  <TextInput 
+                     onChangeText={emailUsername => this.setState({emailUsername})} 
+                     style={styles.input} 
+                     value={this.state.emailUsername} 
+                     placeholder="email"
+                  />
                </TouchableOpacity>
                <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="email"></TextInput>
+                  <TextInput 
+                     onChangeText={hash => this.setState({hash})} 
+                     style={styles.input} 
+                     value={this.state.hash}
+                     placeholder="password"
+                  />
                </TouchableOpacity>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput style={styles.input} placeholder="password"></TextInput>
-               </TouchableOpacity>
-               <Button title="SUBMIT" onPress={this.userLogin} />
+               <Button title="SUBMIT" onPress={() => this.userLogin(this.state.emailUsername, this.state.hash)} />
             </View>
+            {this.state.loggedIn && <Button title="GO TO QUIZ" onPress={this.goToQuiz} />}
          </View>
       );
    }
