@@ -4,12 +4,18 @@ import {
     Text,
     View,
     SafeAreaView,
-    StyleSheet
+    StyleSheet,
+    ImageBackground
 } from 'react-native';
 import Axios from 'axios';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import LottieView from 'lottie-react-native';
 
 import Microphone from './components/Microphone';
+
+const img = 'https://image.freepik.com/free-photo/desktop-with-assortment-school-supplies_23-2147654489.jpg';
+
+const defaultOptions = {loop: false, autoplay: false};
 
 export default function SpeechToText({ 
     _startRecognizing,
@@ -30,23 +36,35 @@ export default function SpeechToText({
     }
     
     return (
-      <SafeAreaView>
-        <View>
-          <Text style={results && word == results ? [styles.button, {backgroundColor: 'green', borderColor: 'yellow', color: 'yellow', marginBottom: 5}] : [styles.button, {backgroundColor: 'white', color: 'black', marginBottom: 5, borderColor: 'black'}]}>{results}</Text>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={{alignSelf: 'center', margin: 50, height: 40, width: 200}}>
           
-          {/* <Microphone onPress={_startRecognizing}/> */}
+          <TouchableOpacity onPressIn={_startRecognizing} onPressOut={_stopRecognizing}>
+        {/* <View title=‘lottie’ style={styles.microphone}> */}
+          <LottieView
+            options={defaultOptions}
+            style={styles.microphone}
+            // isStopped={this.state.isStopped}
+            // isPaused={this.state.isPaused}
+            source={require('./assets/mic2.json')}
+            loop
+            autoPlay={true}
+            // onPress= {() => Voice.onSpeechStart} 
+          />
+            {/* </View> */}
+          </TouchableOpacity>
 
           <TouchableOpacity onPress={() => {_answerChecker(results); postRequest();}}>
             <Text style={styles.button}>SUBMIT</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={_startRecognizing}>
+          {/* <TouchableOpacity onPress={_startRecognizing}>
             <Text style={[styles.button, {backgroundColor: 'blue'}]}>Start Recording</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
-          <TouchableOpacity onPress={_stopRecognizing}>
+          {/* <TouchableOpacity onPress={_stopRecognizing}>
             <Text style={[styles.button, {backgroundColor: 'orange'}]}>Stop</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <TouchableOpacity onPress={_destroyRecognizer}>
             <Text style={[styles.button, {backgroundColor: 'red'}]}>Reset</Text>
@@ -72,5 +90,10 @@ export default function SpeechToText({
       overflow: 'hidden',
       padding: 5,
       textAlign:'center',
+    },
+    microphone: {
+      alignSelf: 'center',
+      width: 150,
+      height: 150
     }
   });

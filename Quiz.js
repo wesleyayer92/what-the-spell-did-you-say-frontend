@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {
     Text,
     View,
+    ImageBackground,
+    StyleSheet
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -13,6 +15,8 @@ import Voice from '@react-native-community/voice';
 import axios from 'axios';
 
 const ENDPOINT = `http://localhost:9000/`;
+const img = 'https://image.freepik.com/free-photo/desktop-with-assortment-school-supplies_23-2147654489.jpg';
+
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -226,16 +230,17 @@ export default class Quiz extends Component {
       // console.log('===========================STATE=============================')
       // console.log(this.state)
         return (
-            <View style={{flex: 1, justifyContent: 'space-between'}}>
-              <View style={{flex: 3, backgroundColor: 'black'}}>
+            <View style={{flex: 1}}>
+              <ImageBackground source={require('./assets/chalkGreenWEraser.jpg')} style={{flex: 3}}>
                 <TextToVoice 
                   sayWord={this.sayWord}
                   sayDefinition={this.sayDefinition}
                   sayPartOfSpeech={this.sayPartofSpeech}
                   makeApiRequest={this.makeApiRequest}
                 />
-              </View>
-              <View style={{flex: 2, backgroundColor: 'darkgrey', padding: 30}}>
+                <Text style={this.state.results && this.state.word == this.state.results ? [styles.button, {color: 'yellow'}] : [styles.button]}>{this.state.results}</Text>
+              </ImageBackground>
+              <ImageBackground source={{uri: img}} style={{flex: 2}}>
                 <SpeechToText
                   _startRecognizing={this._startRecognizing}
                   _stopRecognizing={this._stopRecognizing}
@@ -247,8 +252,20 @@ export default class Quiz extends Component {
                   results={this.state.results}
                   attemptCorrect={this.state.attemptCorrect}
                 />
-              </View>  
+              </ImageBackground>  
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    color: 'white',
+    fontFamily: 'Chalkduster',
+    fontSize: 60,
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    margin: 20,
+    textAlign: 'center',
+  }
+});
