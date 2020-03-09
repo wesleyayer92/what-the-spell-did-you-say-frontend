@@ -1,0 +1,6 @@
+module Pods_Voice {
+  umbrella header "Pods-Voice-umbrella.h"
+
+  export *
+  module * { export * }
+}
