@@ -9,14 +9,13 @@ import { Actions } from 'react-native-router-flux';
 
 import SpeechToText from './SpeechToText';
 import TextToVoice from './TextToVoice';
+import Check from './components/Check';
 
 import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 import axios from 'axios';
 
 const ENDPOINT = `http://localhost:9000/`;
-const img = 'https://image.freepik.com/free-photo/desktop-with-assortment-school-supplies_23-2147654489.jpg';
-
 
 export default class Quiz extends Component {
     constructor(props) {
@@ -38,9 +37,10 @@ export default class Quiz extends Component {
             error: '',
             end: '',
             started: '',
-            results: [],
+            results: '',
             partialResults: [],
             attemptCorrect: false,
+            emailUsername: 'hey this is a test'
         };
     }
 
@@ -186,14 +186,18 @@ export default class Quiz extends Component {
         }
     };
     
-    _answerChecker = (results) => {
+    _answerChecker = async() => {
         // const answer = this.state.results
         let answer = this.state.word.toUpperCase();
         console.log(`ANSWER: ${answer}`);
-        console.log(`RESULTS: ${results}`);
-        if (answer == results) {
-          this.setState({
+        console.log(`RESULTS: ${this.state.results}`);
+        if (answer == this.state.results) {
+          await this.setState({
             attemptCorrect: true
+          }, () => console.log(this.state.attemptCorrect));
+        } else {
+          await this.setState({
+            attemptCorrect: false
           }, () => console.log(this.state.attemptCorrect));
         }
     }              
@@ -239,8 +243,9 @@ export default class Quiz extends Component {
                   makeApiRequest={this.makeApiRequest}
                 />
                 <Text style={this.state.results && this.state.word == this.state.results ? [styles.button, {color: 'yellow'}] : [styles.button]}>{this.state.results}</Text>
+                {this.state.word == this.state.results && <Check />}
               </ImageBackground>
-              <ImageBackground source={{uri: img}} style={{flex: 2}}>
+              <ImageBackground source={require('./assets/deskLookingAtChalkboard.jpg')} style={{flex: 2}}>
                 <SpeechToText
                   _startRecognizing={this._startRecognizing}
                   _stopRecognizing={this._stopRecognizing}
@@ -251,6 +256,7 @@ export default class Quiz extends Component {
                   wordId={this.state.wordId}
                   results={this.state.results}
                   attemptCorrect={this.state.attemptCorrect}
+                  emailUsername={this.state.emailUsername}
                 />
               </ImageBackground>  
             </View>
