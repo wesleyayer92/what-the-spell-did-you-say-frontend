@@ -33,6 +33,7 @@ export default class SpeechToText extends React.Component {
         emailUsername: this.props.emailUsername
      }
   }
+  
   static getDerivedStateFromProps(nextProps, prevState) {
      return {
         _startRecognizing: nextProps._startRecognizing,
@@ -64,6 +65,7 @@ export default class SpeechToText extends React.Component {
         })
      }
   }
+
   postRequest = async () => {
      const url = `http://localhost:9000`;
      await this.state._answerChecker(this.state.results);
@@ -71,6 +73,7 @@ export default class SpeechToText extends React.Component {
      console.log('ATTEMP: ', this.state.attemptCorrect)
      await Axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, wordId: this.state.wordId });
   }
+
   render() {
      return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -98,9 +101,9 @@ export default class SpeechToText extends React.Component {
               {/* <TouchableOpacity onPress={this.state._stopRecognizing}>
           <Text style={[styles.button, {backgroundColor: 'orange'}]}>Stop</Text>
         </TouchableOpacity> */}
-              <TouchableOpacity onPress={this.state._destroyRecognizer}>
+              {/* <TouchableOpacity onPress={this.state._destroyRecognizer}>
                  <Text style={[styles.button, { backgroundColor: 'red' }]}>Reset</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity onPress={() => this.state.nextWord()}>
                  <Text style={[styles.button, { backgroundColor: 'silver' }]}>NEXT</Text>
               </TouchableOpacity>

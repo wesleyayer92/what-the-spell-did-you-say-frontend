@@ -28,7 +28,7 @@ class Login extends Component {
    }
 
    goToHome = () => {
-      Actions.home()
+      Actions.home({emailUsername: this.state.emailUsername})
    }
 
    createUser = async(name, emailUsername, hash) => {

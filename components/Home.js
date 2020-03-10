@@ -6,9 +6,9 @@ import TheBee from './TheBee';
 import HomeModal from './HomeModal';
 import Schoolbus from './SchoolBus';
 
-const Home = () => {
+const Home = (props) => {
    const goToQuiz = () => {
-      Actions.quiz()
+      Actions.quiz({emailUsername: props.emailUsername})
    }
 
 
@@ -18,7 +18,6 @@ const Home = () => {
 
    return (
       <View style={{backgroundColor: 'black'}} >
-     
          <TouchableOpacity onPress = {goToQuiz}>
             <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>GO TO SCHOOL!</Text>
             <Schoolbus />
