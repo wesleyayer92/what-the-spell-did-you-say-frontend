@@ -33,12 +33,12 @@ class Scorecard extends Component {
                 <View>
                     {/* {this.state.array.length > 0 && this.state.array.map(item => <Text>{JSON.stringify(item.attemptcorrect)}</Text>)} */}
                     <Text style={styles.subheader}>
-                        {`LIFETIME SCORE:\t`}
-                        <Text style={styles.score}>{this.state.totalCorrect}%</Text>
+                        {`QUIZ SCORE:  `}
+                        <Text style={styles.score}>{this.state.recentCorrect}%</Text>
                     </Text>
                     <Text style={styles.subheader}>
-                        {`QUIZ SCORE:\t`}
-                        <Text style={styles.score}>{this.state.recentCorrect}%</Text>
+                        {`LIFETIME SCORE:  `}
+                        <Text style={styles.score}>{this.state.totalCorrect}%</Text>
                     </Text>
                 </View>
 

@@ -12,7 +12,7 @@ export default class TextToVoice extends React.Component {
     render() {
       return (
         <View>
-          <Text style={[styles.chalky, {textAlign: 'center', fontSize: 40, textDecorationLine: 'none'}]}>{`Hello, class! :)\n`}</Text>
+          <Text style={[styles.chalky, {textAlign: 'center', fontSize: 40, textDecorationLine: 'none'}]}>{`Hello, ${this.props.emailUsername} :)\n`}</Text>
           
           <TouchableOpacity onPress={this.props.sayWord}>
             <Text style={styles.chalky}>1. Word</Text>

@@ -14,6 +14,7 @@ import Check from './components/Check';
 import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 import axios from 'axios';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ENDPOINT = `http://localhost:9000/`;
 
@@ -40,7 +41,6 @@ export default class Quiz extends Component {
             results: '',
             partialResults: [],
             attemptCorrect: false,
-            emailUsername: 'hey this is a test'
         };
     }
 
@@ -232,7 +232,7 @@ export default class Quiz extends Component {
 
     render() {
       // console.log('===========================STATE=============================')
-      // console.log(this.state)
+      console.log(this.props.emailUsername);
         return (
             <View style={{flex: 1}}>
               <ImageBackground source={require('./assets/chalkGreenWEraser.jpg')} style={{flex: 3}}>
@@ -241,9 +241,15 @@ export default class Quiz extends Component {
                   sayDefinition={this.sayDefinition}
                   sayPartOfSpeech={this.sayPartofSpeech}
                   makeApiRequest={this.makeApiRequest}
+                  emailUsername={this.props.emailUsername}
                 />
                 <Text style={this.state.results && this.state.word == this.state.results ? [styles.button, {color: 'yellow'}] : [styles.button]}>{this.state.results}</Text>
                 {this.state.word == this.state.results && <Check />}
+
+                <TouchableOpacity onPress={this._destroyRecognizer}>
+                  <Text style={{alignSelf: 'center', fontFamily: 'Chalkduster', fontSize: 35, color: 'white', marginLeft: -230, marginTop: 130}}>ERASE</Text>
+                </TouchableOpacity>
+
               </ImageBackground>
               <ImageBackground source={require('./assets/deskLookingAtChalkboard.jpg')} style={{flex: 2}}>
                 <SpeechToText
