@@ -19,13 +19,13 @@ const Home = () => {
    return (
       <View style={{backgroundColor: 'black'}} >
      
-         <TouchableOpacity style = {{  }} onPress = {goToQuiz}>
-            <Text style={{paddingTop: 30,paddingLeft: 140,fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>Spelling Bee</Text>
+         <TouchableOpacity onPress = {goToQuiz}>
+            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>GO TO SCHOOL!</Text>
             <Schoolbus />
          </TouchableOpacity>
          <HomeModal />
-         <TouchableOpacity style = {{ }} onPress = {goToScorecard}>
-            <Text style={{paddingLeft: 110,fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>GO TO SCORECARD!</Text>
+         <TouchableOpacity onPress = {goToScorecard}>
+            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>REPORT CARD!</Text>
          <TheBee />
          </TouchableOpacity>
          

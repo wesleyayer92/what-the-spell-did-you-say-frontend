@@ -4,16 +4,16 @@ import LottieView from "lottie-react-native";
 
 
  
-    export default class Bee extends React.Component {
+    export default class Check extends React.Component {
 
 
 
   render() {
     return (
-  <View title='lottie' style={{width: 300, height: 300, alignSelf: 'center'}}>
+  <View title='lottie' style={{marginBottom: 400,marginLeft: 300,width: 100, height: 100}}>
     <Text></Text>
           <LottieView
-            source={require("../assets/teacher.json")}
+            source={require("../assets/check.json")}
             loop
             autoPlay
   />

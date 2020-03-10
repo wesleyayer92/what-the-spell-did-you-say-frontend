@@ -6,8 +6,10 @@ import {
    TextInput, 
    View, 
    StyleSheet, 
-   Button 
+   Button
 } from 'react-native';
+
+import Modal from 'react-native-modal';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -20,7 +22,8 @@ class Login extends Component {
          name: '',
          emailUsername: '',
          hash: '',
-         loggedIn: false
+         loggedIn: false,
+         isModalVisible: false
       };
    }
 
@@ -45,8 +48,19 @@ class Login extends Component {
          })
       } else {
          this.setState({
-            loggedIn: false
+            loggedIn: false,
+            isModalVisible: true
          })
+      }
+   }
+
+   toggleModal = () => {
+      if (this.state.loggedIn == false) {
+         this.setState({
+            isModalVisible: !this.state.isModalVisible
+         })
+      } else {
+         return;
       }
    }
 
@@ -125,6 +139,7 @@ class Login extends Component {
                   />
                </TouchableOpacity>
                <Button title="SUBMIT" onPress={() => this.userLogin(this.state.emailUsername, this.state.hash)} />
+               {this.state.isModalVisible && <View style={{flex: 1}}><Button title="Show modal" onPress={this.toggleModal} /><Modal isVisible={this.state.isModalVisible}><Text style={{color: 'springgreen', textAlign: 'center'}}>DIDNT LOGIN CORRECTLY</Text><Button title="hide modal" onPress={this.toggleModal} /></Modal></View>}
             </View>
             {this.state.loggedIn && <Button title="GO HOME" onPress={this.goToHome} />}
          </View>
