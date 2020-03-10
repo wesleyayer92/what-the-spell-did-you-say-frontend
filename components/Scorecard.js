@@ -16,10 +16,10 @@ class Scorecard extends Component {
     async componentDidMount() {
         await axios.get(ENDPOINT)
             .then(r => this.setState({
-                totalCorrect: r.data
-            }))
-            console.log('line 20');
-            console.log(this.state.totalCorrect);
+                totalCorrect: r.data[0],
+                recentCorrect: r.data[1]
+            }, console.log(r.data)))
+            // console.log(this.state.totalCorrect);
     }
 
     render() {
@@ -33,8 +33,12 @@ class Scorecard extends Component {
                 <View>
                     {/* {this.state.array.length > 0 && this.state.array.map(item => <Text>{JSON.stringify(item.attemptcorrect)}</Text>)} */}
                     <Text style={styles.subheader}>
-                        {`LIFETIME CORRECT:\t`}
+                        {`LIFETIME SCORE:\t`}
                         <Text style={styles.score}>{this.state.totalCorrect}%</Text>
+                    </Text>
+                    <Text style={styles.subheader}>
+                        {`QUIZ SCORE:\t`}
+                        <Text style={styles.score}>{this.state.recentCorrect}%</Text>
                     </Text>
                 </View>
 
@@ -69,7 +73,8 @@ const styles = StyleSheet.create({
     subheader: {
         marginLeft: 10, 
         fontFamily: 'Bradley Hand', 
-        fontSize: 25
+        fontSize: 25,
+        fontWeight: 'bold'
     },
     score: {
         fontFamily: 'BradleyHandITCTT-Bold', 
