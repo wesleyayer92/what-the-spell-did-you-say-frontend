@@ -13,7 +13,7 @@ const Home = (props) => {
 
 
    const goToScorecard = () => {
-      Actions.scorecard()
+      Actions.scorecard({emailUsername: props.emailUsername})
    }
 
    return (
@@ -24,7 +24,7 @@ const Home = (props) => {
          </TouchableOpacity>
          <HomeModal />
          <TouchableOpacity onPress = {goToScorecard}>
-            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>REPORT CARD!</Text>
+            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>{props.emailUsername}'s REPORT CARD!</Text>
          <TheBee />
          </TouchableOpacity>
          

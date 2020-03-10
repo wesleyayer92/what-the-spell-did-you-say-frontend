@@ -9,7 +9,8 @@ class Scorecard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalCorrect: 0
+            totalCorrect: 0,
+            recentCorrect: 0
         }
     }
 
@@ -21,6 +22,40 @@ class Scorecard extends Component {
             }, console.log(r.data)))
             // console.log(this.state.totalCorrect);
     }
+
+    async componentDidMount() {
+        const url = `http://localhost:9000/scorecard`;
+        const data = {emailUsername: this.props.emailUsername};
+        const response = await axios.post(url, data)
+        this.setState({
+            totalCorrect: response.data[0],
+            recentCorrect: response.data[1]
+        });
+        console.log('RESPONSE!!!!!!!!!!!!!!!!!!!!!!');
+        console.log(response);
+    }
+
+
+    // userLogin = async(emailUsername, hash) => {
+    //     const url = `http://localhost:9000/login`;
+    //     const data = {emailUsername, hash};
+    //     const response = await axios.post(url, data);
+    //     console.log(response.data);
+    //     if (response.data == 'ITS WORKING') {
+    //        this.setState({
+    //           loggedIn: true
+    //        })
+    //     } else {
+    //        this.setState({
+    //           loggedIn: false,
+    //           isModalVisible: true
+    //        })
+    //     }
+    //  }
+
+
+
+
 
     render() {
         // console.log(this.state.array[0].attemptcorrect)

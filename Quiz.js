@@ -262,7 +262,7 @@ export default class Quiz extends Component {
                   wordId={this.state.wordId}
                   results={this.state.results}
                   attemptCorrect={this.state.attemptCorrect}
-                  emailUsername={this.state.emailUsername}
+                  emailUsername={this.props.emailUsername}
                 />
               </ImageBackground>  
             </View>
