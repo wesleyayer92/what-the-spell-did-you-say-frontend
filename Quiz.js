@@ -61,7 +61,7 @@ export default class Quiz extends Component {
         this.setState({
           index: 0
         });
-        Actions.scorecard();
+        Actions.scorecard({emailUsername: this.props.emailUsername});
       } else {
         this.setState({
           index: this.state.index + 1,
@@ -231,8 +231,6 @@ export default class Quiz extends Component {
     };
 
     render() {
-      // console.log('===========================STATE=============================')
-      console.log(this.props.emailUsername);
         return (
             <View style={{flex: 1}}>
               <ImageBackground source={require('./assets/chalkGreenWEraser.jpg')} style={{flex: 3}}>
@@ -262,7 +260,7 @@ export default class Quiz extends Component {
                   wordId={this.state.wordId}
                   results={this.state.results}
                   attemptCorrect={this.state.attemptCorrect}
-                  emailUsername={this.state.emailUsername}
+                  emailUsername={this.props.emailUsername}
                 />
               </ImageBackground>  
             </View>
