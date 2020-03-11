@@ -7,11 +7,11 @@ import {
     StyleSheet,
     ImageBackground
 } from 'react-native';
-import Axios from 'axios';
+import axios from 'axios';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
 
-import Microphone from './components/Microphone';
+const mic = require('./assets/mic2.json');
 
 const img = 'https://image.freepik.com/free-photo/desktop-with-assortment-school-supplies_23-2147654489.jpg';
 
@@ -33,7 +33,7 @@ export default class SpeechToText extends React.Component {
         emailUsername: this.props.emailUsername
      }
   }
-  
+
   static getDerivedStateFromProps(nextProps, prevState) {
      return {
         _startRecognizing: nextProps._startRecognizing,
@@ -71,7 +71,11 @@ export default class SpeechToText extends React.Component {
      await this.state._answerChecker(this.state.results);
      // const data = { attemptCorrect, wordId };
      console.log('ATTEMP: ', this.state.attemptCorrect)
-     await Axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, wordId: this.state.wordId });
+     axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, wordId: this.state.wordId })
+                .then(response => {
+                  console.log(`HERES POST REQUEST RESPONSE:`);
+                  console.log(response.data);
+              }, (err) => {console.log(err)})
   }
 
   render() {
@@ -85,7 +89,7 @@ export default class SpeechToText extends React.Component {
                     style={styles.microphone}
                     // isStopped={this.state.isStopped}
                     // isPaused={this.state.isPaused}
-                    source={require('./assets/mic2.json')}
+                    source={mic}
                     loop
                     autoPlay={true}
                  // onPress= {() => Voice.onSpeechStart} 

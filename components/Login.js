@@ -119,7 +119,7 @@ class Login extends Component {
                      placeholder="password"
                   />
                </TouchableOpacity>
-               <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername.toLowerCase(), this.state.hash)} />
+               <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername, this.state.hash)} />
    
                <Text style={{textAlign: 'center'}}>LOGIN</Text>
                <TouchableOpacity style={{alignSelf: 'center'}}>
