@@ -97,11 +97,13 @@ export default class SpeechToText extends React.Component {
                  />
                  {/* </View> */}
               </TouchableOpacity>
+
               <ImageBackground source={books} style={{marginBottom: 20, width: 260, height: 130, alignSelf: 'center'}}>
                 <View style={{marginTop: 40, marginRight: 10}}>
                   <TouchableOpacity onPress={() => {this.postRequest(this.state.results); this.state.nextWord()}}>
                     <Text style={[styles.button, {marginRight: 27, marginTop: 5}]}>SUBMIT</Text>
                     <HomeModal />
+
                   </TouchableOpacity>
                   {/* <TouchableOpacity onPress={() => this.state.nextWord()}>
                     <Text style={styles.button}>NEXT</Text>
@@ -126,7 +128,9 @@ export default class SpeechToText extends React.Component {
       overflow: 'hidden',
       padding: 5,
       textAlign:'center',
+ 
       fontFamily: 'Courier'
+
     },
     microphone: {
       alignSelf: 'center',
