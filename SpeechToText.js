@@ -70,8 +70,8 @@ export default class SpeechToText extends React.Component {
      const url = `http://localhost:9000`;
      await this.state._answerChecker(this.state.results);
      // const data = { attemptCorrect, wordId };
-     console.log('ATTEMP: ', this.state.attemptCorrect)
-     axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, wordId: this.state.wordId })
+     console.log('ATTEMPT: ', this.state.attemptCorrect)
+     axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, word: this.state.word })
                 .then(response => {
                   console.log(`HERES POST REQUEST RESPONSE:`);
                   console.log(response.data);
