@@ -10,10 +10,10 @@ import LottieView from "lottie-react-native";
 
   render() {
     return (
-  <View title='lottie' style={{width: 300, height: 300, alignSelf: 'center'}}>
+  <View title='lottie' style={{width: 200, height: 200, alignSelf: 'center'}}>
     <Text></Text>
           <LottieView
-            source={require("../assets/teacher.json")}
+            source={require("../assets/bee.json")}
             loop
             autoPlay
   />
