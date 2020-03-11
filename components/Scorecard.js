@@ -10,31 +10,7 @@ class Scorecard extends Component {
         this.state = {
             totalCorrect: 0,
             recentCorrect: 0,
-            words: [{
-                word: 'dog',
-                attemptCorrect: false
-            },
-            {
-                word: 'cat',
-                attemptCorrect: true
-            },
-            {
-                word: 'fish',
-                attemptCorrect: false
-            },
-            {
-                word: 'seahorse',
-                attemptCorrect: true
-            },
-            {
-                word: 'capybara',
-                attemptCorrect: true
-            },
-            {
-                word: 'guinea pig',
-                attemptCorrect: false
-            }
-        ]
+            words: []
         }
     }
 
@@ -53,7 +29,8 @@ class Scorecard extends Component {
         const response = await axios.post(url, data)
         this.setState({
             totalCorrect: response.data[0],
-            recentCorrect: response.data[1]
+            recentCorrect: response.data[1],
+            words: response.data[2].reverse()
         });
         console.log('RESPONSE!!!!!!!!!!!!!!!!!!!!!!');
         console.log(response);
@@ -74,7 +51,7 @@ class Scorecard extends Component {
                         {`LIFETIME SCORE:  `}
                         <Text style={styles.score}>{this.state.totalCorrect}%</Text>
                     </Text>
-                    {this.state.words.map(word => word.attemptCorrect == true ? <Text style={{marginTop: 10, textAlign: 'center', fontSize: 50, color: 'green'}}>{word.word}</Text> : <Text style={{marginTop: 30, textAlign: 'center', fontSize: 50, color: 'red', textDecorationLine: 'line-through'}}>{word.word}</Text>)}
+                    {this.state.words.map(word => word.attemptcorrect == true ? <Text style={styles.word}>{word.word}</Text> : <Text style={[styles.word, {color: 'red', textDecorationLine: 'line-through'}]}>{word.word}</Text>)}
                 </View>
             </ImageBackground>
         );
@@ -100,6 +77,12 @@ const styles = StyleSheet.create({
         fontFamily: 'BradleyHandITCTT-Bold', 
         fontSize: 40, 
         color: 'red'
+    },
+    word: {
+        fontFamily: 'Noteworthy',
+        textAlign: 'center',
+        fontSize: 45,
+        color: 'green'
     }
 })
 

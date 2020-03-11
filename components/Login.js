@@ -63,28 +63,7 @@ class Login extends Component {
          return;
       }
    }
-
-   // return (
-   //    <View>
-   //       <TouchableOpacity style={{margin: 128}} onPress={goToQuiz}>
-   //          <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black'}}>GO TO QUIZ!</Text>
-   //       </TouchableOpacity>
-
-   //       <TouchableOpacity style={{margin: 128}} onPress={goToScorecard}>
-   //          <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black'}}>GO TO REPORT CARD!</Text>
-   //       </TouchableOpacity>
-   //       <TouchableOpacity style={{alignSelf: 'center'}}>
-   //          <TextInput style={{backgroundColor: 'white', padding: 5, borderColor: 'black', alignSelf: 'flex-start', borderWidth: 1, borderRadius: 5}} placeholder="email"></TextInput>
-   //       </TouchableOpacity>
-   //       <TouchableOpacity style={{alignSelf: 'center'}}>
-   //          <TextInput style={{backgroundColor: 'white', padding: 5, borderColor: 'black', alignSelf: 'flex-start', borderWidth: 1, borderRadius: 5}} placeholder="password"></TextInput>
-   //       </TouchableOpacity>
-   //       {/* <TheBee /> */}
-   //       {/* <HomeModal /> */}
-   //    </View>
-
-     
-//      CASEY conflict from your code below. We just commented it out to push. 
+   
    render() {
       return (
          <View style={{flex: 1}}>
