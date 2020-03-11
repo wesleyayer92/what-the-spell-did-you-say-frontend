@@ -13,7 +13,7 @@ import LottieView from 'lottie-react-native';
 
 const mic = require('./assets/mic2.json');
 
-const img = 'https://image.freepik.com/free-photo/desktop-with-assortment-school-supplies_23-2147654489.jpg';
+const books = require('./assets/bookclipart.png');
 
 const defaultOptions = {loop: false, autoplay: false};
 
@@ -96,21 +96,16 @@ export default class SpeechToText extends React.Component {
                  />
                  {/* </View> */}
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.postRequest(this.state.results); }}>
-                 <Text style={styles.button}>SUBMIT</Text>
-              </TouchableOpacity>
-              {/* <TouchableOpacity onPress={this.state._startRecognizing}>
-          <Text style={[styles.button, {backgroundColor: 'blue'}]}>Start Recording</Text>
-        </TouchableOpacity> */}
-              {/* <TouchableOpacity onPress={this.state._stopRecognizing}>
-          <Text style={[styles.button, {backgroundColor: 'orange'}]}>Stop</Text>
-        </TouchableOpacity> */}
-              {/* <TouchableOpacity onPress={this.state._destroyRecognizer}>
-                 <Text style={[styles.button, { backgroundColor: 'red' }]}>Reset</Text>
-              </TouchableOpacity> */}
-              <TouchableOpacity onPress={() => this.state.nextWord()}>
-                 <Text style={[styles.button, { backgroundColor: 'silver' }]}>NEXT</Text>
-              </TouchableOpacity>
+              <ImageBackground source={books} style={{width: 260, height: 130, alignSelf: 'center'}}>
+                <View style={{marginTop: 40, marginRight: 10}}>
+                  <TouchableOpacity onPress={() => {this.postRequest(this.state.results); this.state.nextWord()}}>
+                    <Text style={styles.button}>SUBMIT</Text>
+                  </TouchableOpacity>
+                  {/* <TouchableOpacity onPress={() => this.state.nextWord()}>
+                    <Text style={styles.button}>NEXT</Text>
+                  </TouchableOpacity> */}
+                </View>
+              </ImageBackground>
            </View>
         </SafeAreaView>
      );
@@ -119,16 +114,17 @@ export default class SpeechToText extends React.Component {
   
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: 'purple',
-      borderColor: 'white',
-      borderWidth: 5,
-      borderRadius: 12,
+      // backgroundColor: 'purple',
+      // borderColor: 'white',
+      // borderWidth: 5,
+      // borderRadius: 12,
       color: 'white',
       fontSize: 24,
       fontWeight: 'bold',
       overflow: 'hidden',
       padding: 5,
       textAlign:'center',
+      fontFamily: 'AmericanTypewriter'
     },
     microphone: {
       alignSelf: 'center',
