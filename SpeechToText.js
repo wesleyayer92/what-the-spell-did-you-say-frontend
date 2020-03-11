@@ -13,7 +13,6 @@ import LottieView from 'lottie-react-native';
 import HomeModal from './components/HomeModal';
 
 const mic = require('./assets/mic2.json');
-
 const books = require('./assets/bookclipart.png');
 
 const defaultOptions = {loop: false, autoplay: false};
@@ -72,11 +71,12 @@ export default class SpeechToText extends React.Component {
      await this.state._answerChecker(this.state.results);
      // const data = { attemptCorrect, wordId };
      console.log('ATTEMPT: ', this.state.attemptCorrect)
-     axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, word: this.state.word })
+     await axios.post(url, { emailUsername: this.state.emailUsername, attemptCorrect: this.state.attemptCorrect, word: this.state.word })
                 .then(response => {
                   console.log(`HERES POST REQUEST RESPONSE:`);
                   console.log(response.data);
-              }, (err) => {console.log(err)})
+              }, (err) => {console.log(err)});
+
   }
 
   render() {
@@ -99,7 +99,7 @@ export default class SpeechToText extends React.Component {
               </TouchableOpacity>
               <ImageBackground source={books} style={{marginBottom: 20, width: 260, height: 130, alignSelf: 'center'}}>
                 <View style={{marginTop: 40, marginRight: 10}}>
-                  <TouchableOpacity onPress={() => {this.postRequest(this.state.results); this.state.nextWord()}}>
+                  <TouchableOpacity onPress={async() => {await this.postRequest(this.state.results); this.state.nextWord()}}>
                     <Text style={[styles.button, {marginRight: 27, marginTop: 5}]}>SUBMIT</Text>
                     <HomeModal />
                   </TouchableOpacity>
