@@ -2,8 +2,7 @@ import React from 'react'
 
 import { TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import TheBee from './TheBee';
-import HomeModal from './HomeModal';
+import Teacher from './Teacher';
 import Schoolbus from './SchoolBus';
 
 const Home = (props) => {
@@ -11,57 +10,22 @@ const Home = (props) => {
       Actions.quiz({emailUsername: props.emailUsername})
    }
 
-
    const goToScorecard = () => {
       Actions.scorecard({emailUsername: props.emailUsername})
    }
 
    return (
-      <View style={{backgroundColor: 'black'}} >
-         <TouchableOpacity onPress = {goToQuiz}>
-            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>GO TO SCHOOL!</Text>
+      <View style={{flex: 1, backgroundColor: 'black'}} >
+         <TouchableOpacity style={{flex: 2, margin: 30, backgroundColor: 'silver'}} onPress={goToQuiz}>
+            <Text style={{alignSelf: 'center', margin: 10, padding: 30, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'purple'}}>GO TO SCHOOL!</Text>
             <Schoolbus />
          </TouchableOpacity>
-         <HomeModal />
-         <TouchableOpacity onPress = {goToScorecard}>
-            <Text style={{alignSelf: 'center', paddingTop: 20, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'black'}}>{props.emailUsername}'s REPORT CARD!</Text>
-         <TheBee />
+         <TouchableOpacity style={{flex: 3, margin: 30, backgroundColor: 'silver'}} onPress={goToScorecard}>
+            <Text style={{alignSelf: 'center', margin: 10, padding: 30, fontFamily: 'Chalkduster', fontSize: 20, color: 'white', backgroundColor: 'red'}}>{props.emailUsername}'s REPORT CARD!</Text>
+            <Teacher />
          </TouchableOpacity>
-         
-         {/* <HomeModal /> */}
-        
       </View>
-
-     
-//      CASEY conflict from your code below. We just commented it out to push. 
-// const _Instructions = () => {
-//    return 'Blue'
-// }
-//    return (
-      
-//       <View style={{flex: 1}}>
-      
-    
-
-//       <View >
-//          <View style= {{color: 'red', backgroundColor:'black'}}>
-//             <TouchableOpacity style = {{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black', margin: 128}} onPress = {goToQuiz}>
-//                <Text style={{color: 'yellow'}}>Welcome to the Spelling Game</Text>
-//             </TouchableOpacity>
-//          </View>
-//            <Button title='Instructions'onPress={() => {_Instructions; }}>
-//                Instructions
-//             </Button>
-//       </View>
-//       <HomeModal />
-//       </View>
-      
-
-//       <TouchableOpacity style = {{ margin: 128 }} onPress = {goToQuiz}>
-//          <Text style={{fontFamily: 'Chalkduster', fontSize: 30, color: 'white', backgroundColor: 'black'}}>This is HOME!</Text>
-//       </TouchableOpacity>
-
-
-   )
+   );
 }
+
 export default Home

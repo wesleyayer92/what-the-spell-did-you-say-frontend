@@ -10,6 +10,7 @@ import {
 import axios from 'axios';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
+import HomeModal from './components/HomeModal';
 
 const mic = require('./assets/mic2.json');
 
@@ -96,10 +97,13 @@ export default class SpeechToText extends React.Component {
                  />
                  {/* </View> */}
               </TouchableOpacity>
-              <ImageBackground source={books} style={{width: 260, height: 130, alignSelf: 'center'}}>
+
+              <ImageBackground source={books} style={{marginBottom: 20, width: 260, height: 130, alignSelf: 'center'}}>
                 <View style={{marginTop: 40, marginRight: 10}}>
                   <TouchableOpacity onPress={() => {this.postRequest(this.state.results); this.state.nextWord()}}>
-                    <Text style={styles.button}>SUBMIT</Text>
+                    <Text style={[styles.button, {marginRight: 27, marginTop: 5}]}>SUBMIT</Text>
+                    <HomeModal />
+
                   </TouchableOpacity>
                   {/* <TouchableOpacity onPress={() => this.state.nextWord()}>
                     <Text style={styles.button}>NEXT</Text>
@@ -124,7 +128,9 @@ export default class SpeechToText extends React.Component {
       overflow: 'hidden',
       padding: 5,
       textAlign:'center',
-      fontFamily: 'AmericanTypewriter'
+ 
+      fontFamily: 'Courier'
+
     },
     microphone: {
       alignSelf: 'center',

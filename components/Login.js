@@ -6,14 +6,21 @@ import {
    TextInput, 
    View, 
    StyleSheet, 
-   Button
+   Button,
+   ImageBackground
 } from 'react-native';
 
 import Modal from 'react-native-modal';
 
+import Bee from './Bee';
+
+const chalkboard = require('../assets/chalkGreenWEraser.jpg');
+const paper = 'http://q-s-i.org/wp-content/uploads/2014/04/wrinkled_paper_texture__by_christianluannstock-d36jws6.jpg';
 import { Actions } from 'react-native-router-flux';
 
 import axios from 'axios';
+
+// const defaultOptions = {loop: false, autoplay: false};
 
 class Login extends Component {
    constructor(props) {
@@ -63,16 +70,17 @@ class Login extends Component {
          return;
       }
    }
-   
+
    render() {
       return (
          <View style={{flex: 1}}>
-            <View style={{flex: 1, backgroundColor:'black'}}>
-               <TouchableOpacity style={styles.header} onPress={this.goToQuiz}>
-                  <Text style={{color: 'yellow'}}>Welcome to the Spelling Game</Text>
+            <ImageBackground source={chalkboard} style={{flex: 1}}>
+               <TouchableOpacity style={{flex: 1}} onPress={this.goToQuiz}>
+                  <Text style={[styles.header, {color: 'white'}]}>What The <Text style={[styles.header, {color: 'yellow'}]}>SPELL</Text>{`\nDid You Say`}</Text><Text style={[styles.header, {color: 'yellow'}]}>!?</Text>
                </TouchableOpacity>
-            </View>
-            <View style={{flex: 1, backgroundColor: 'yellow'}}>
+               <Bee style={{flex: 1}} />
+            </ImageBackground>
+            <ImageBackground source={{uri: paper}} style={{top: 0, left: 0}}>
                <Text style={{textAlign: 'center'}}>SIGN UP</Text>
                <TouchableOpacity style={{alignSelf: 'center'}}>
                   <TextInput 
@@ -119,7 +127,7 @@ class Login extends Component {
                </TouchableOpacity>
                <Button title="SUBMIT" onPress={() => this.userLogin(this.state.emailUsername, this.state.hash)} />
                {this.state.isModalVisible && <View style={{flex: 1}}><Button title="Show modal" onPress={this.toggleModal} /><Modal isVisible={this.state.isModalVisible}><Text style={{color: 'springgreen', textAlign: 'center'}}>DIDNT LOGIN CORRECTLY</Text><Button title="hide modal" onPress={this.toggleModal} /></Modal></View>}
-            </View>
+            </ImageBackground>
             {this.state.loggedIn && <Button title="GO HOME" onPress={this.goToHome} />}
          </View>
       );
@@ -129,10 +137,9 @@ class Login extends Component {
 const styles = StyleSheet.create({
    header: {
       fontFamily: 'Chalkduster',
-      fontSize: 30, 
+      fontSize: 40, 
       color: 'white', 
-      backgroundColor: 'black', 
-      margin: 128
+      textAlign: 'center'
    },
    input: {
       backgroundColor: 'white', 
