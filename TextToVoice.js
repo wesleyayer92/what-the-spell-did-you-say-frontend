@@ -23,9 +23,6 @@ export default class TextToVoice extends React.Component {
           <TouchableOpacity onPress={this.props.sayPartOfSpeech}>
             <Text style={styles.chalky}>3. Part of Speech</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={makeApiRequest}>
-            <Text style={styles.chalky}>4. Make Api Request</Text>
-          </TouchableOpacity> */}
         </View>
       );
     }

@@ -102,12 +102,8 @@ export default class SpeechToText extends React.Component {
                 <View style={{marginTop: 40, marginRight: 10}}>
                   <TouchableOpacity onPress={async() => {await this.postRequest(this.state.results); this.state.nextWord()}}>
                     <Text style={[styles.button, {marginRight: 27, marginTop: 5}]}>SUBMIT</Text>
-                    <HomeModal />
-
                   </TouchableOpacity>
-                  {/* <TouchableOpacity onPress={() => this.state.nextWord()}>
-                    <Text style={styles.button}>NEXT</Text>
-                  </TouchableOpacity> */}
+                  <HomeModal />
                 </View>
               </ImageBackground>
            </View>

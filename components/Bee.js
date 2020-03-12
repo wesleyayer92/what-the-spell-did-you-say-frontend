@@ -10,7 +10,7 @@ import LottieView from "lottie-react-native";
 
   render() {
     return (
-  <View title='lottie' style={{width: 200, height: 200, alignSelf: 'center'}}>
+  <View title='lottie' style={{width: 200, height: 200, alignSelf: 'center', marginBottom: 130}}>
     <Text></Text>
           <LottieView
             source={require("../assets/bee.json")}

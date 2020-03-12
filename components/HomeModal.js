@@ -16,7 +16,7 @@ export default class ModalTester extends Component {
     return (
       <View>
         <TouchableOpacity onPress={this.toggleModal}>
-          <Text style={{fontWeight: 'bold', marginLeft: 36, marginTop: 7, fontFamily: 'Courier', fontSize: 20}}>INSTRUCTIONS</Text>
+          <Text style={{fontWeight: 'bold', marginLeft: 43, marginTop: 7, fontFamily: 'Courier', fontSize: 18}}>INSTRUCTIONS</Text>
         </TouchableOpacity>
         <Modal isVisible={this.state.isModalVisible}>
             {/* <View style={{ flex: 1 }}> */}

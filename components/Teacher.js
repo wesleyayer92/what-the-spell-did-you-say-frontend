@@ -6,7 +6,7 @@ export default class Teacher extends React.Component {
     return (
       <LottieView
         source={require("../assets/teacher.json")}
-        style={{width: 200, height: 200, alignSelf: 'center'}}
+        style={{marginTop: 10, width: 200, height: 200, alignSelf: 'center'}}
         loop
         autoPlay
       />
