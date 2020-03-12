@@ -9,7 +9,7 @@ export default class Schoolbus extends React.Component {
     return (
         <LottieView
           source={require("../assets/schoolbus.json")}
-          style={{width: 100, height: 100, alignSelf: 'center'}}
+          style={{marginTop: 12, width: 100, height: 100, alignSelf: 'center'}}
           loop
           autoPlay
         />

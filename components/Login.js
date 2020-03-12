@@ -74,61 +74,57 @@ class Login extends Component {
    render() {
       return (
          <View style={{flex: 1}}>
-            <ImageBackground source={chalkboard} style={{flex: 1}}>
-               <TouchableOpacity style={{flex: 1}} onPress={this.goToQuiz}>
+            <ImageBackground source={chalkboard} style={{flex: 5}}>
+               <TouchableOpacity style={{flex: 1, marginTop: 20}} onPress={this.goToQuiz}>
                   <Text style={[styles.header, {color: 'white'}]}>What The <Text style={[styles.header, {color: 'yellow'}]}>SPELL</Text>{`\nDid You Say`}</Text><Text style={[styles.header, {color: 'yellow'}]}>!?</Text>
                </TouchableOpacity>
                <Bee style={{flex: 1}} />
             </ImageBackground>
-            <ImageBackground source={{uri: paper}} style={{top: 0, left: 0}}>
-               <Text style={{textAlign: 'center'}}>SIGN UP</Text>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput 
-                     onChangeText={name => this.setState({name})} 
-                     style={styles.input} 
-                     value={this.state.name} 
-                     placeholder="name"
-                  />   
-               </TouchableOpacity>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput 
-                     onChangeText={emailUsername => this.setState({emailUsername})} 
-                     style={styles.input} 
-                     value={this.state.emailUsername} 
-                     placeholder="email"
-                  />
-               </TouchableOpacity>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput 
-                     onChangeText={hash => this.setState({hash})} 
-                     style={styles.input} 
-                     value={this.state.hash} 
-                     placeholder="password"
-                  />
-               </TouchableOpacity>
-               <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername, this.state.hash)} />
+            <ImageBackground source={{uri: paper}} style={{flex: 2, flexDirection: 'row', justifyContent: 'space-between', top: 0, left: 0}}>
+               <View style={{marginLeft: 50, marginTop: 30}}>
+                  <Text style={{textAlign: 'center', fontSize: 30}}>SIGN UP</Text>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                     <TextInput 
+                        onChangeText={emailUsername => this.setState({emailUsername})} 
+                        style={styles.input} 
+                        value={this.state.emailUsername} 
+                        placeholder="name"
+                     />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                     <TextInput 
+                        onChangeText={hash => this.setState({hash})} 
+                        style={styles.input} 
+                        value={this.state.hash} 
+                        placeholder="password"
+                     />
+                  </TouchableOpacity>
+                  <Button title="SUBMIT" onPress={() => this.createUser(this.state.name, this.state.emailUsername, this.state.hash)} />
+               </View>
    
-               <Text style={{textAlign: 'center'}}>LOGIN</Text>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput 
-                     onChangeText={emailUsername => this.setState({emailUsername})} 
-                     style={styles.input} 
-                     value={this.state.emailUsername} 
-                     placeholder="email"
-                  />
-               </TouchableOpacity>
-               <TouchableOpacity style={{alignSelf: 'center'}}>
-                  <TextInput 
-                     onChangeText={hash => this.setState({hash})}
-                     style={styles.input}
-                     value={this.state.hash}
-                     placeholder="password"
-                  />
-               </TouchableOpacity>
-               <Button title="SUBMIT" onPress={() => this.userLogin(this.state.emailUsername, this.state.hash)} />
+               <View style={{marginRight: 50, marginTop: 30}}>
+                  <Text style={{textAlign: 'center', fontSize: 30}}>LOGIN</Text>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                     <TextInput 
+                        onChangeText={emailUsername => this.setState({emailUsername})} 
+                        style={styles.input} 
+                        value={this.state.emailUsername} 
+                        placeholder="name"
+                     />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                     <TextInput 
+                        onChangeText={hash => this.setState({hash})}
+                        style={styles.input}
+                        value={this.state.hash}
+                        placeholder="password"
+                     />
+                  </TouchableOpacity>
+                  <Button title="SUBMIT" onPress={() => this.userLogin(this.state.emailUsername, this.state.hash)} />
+               </View>
                {this.state.isModalVisible && <View style={{flex: 1}}><Button title="Show modal" onPress={this.toggleModal} /><Modal isVisible={this.state.isModalVisible}><Text style={{color: 'springgreen', textAlign: 'center'}}>DIDNT LOGIN CORRECTLY</Text><Button title="hide modal" onPress={this.toggleModal} /></Modal></View>}
             </ImageBackground>
-            {this.state.loggedIn && <Button title="GO HOME" onPress={this.goToHome} />}
+            {this.state.loggedIn && <TouchableOpacity onPress={this.goToHome}><Text style={{fontFamily: 'Courier', padding: 30, textAlign: 'center', fontSize: 40}}>CONTINUE</Text></TouchableOpacity>}
          </View>
       );
    }
@@ -142,6 +138,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
    },
    input: {
+      fontSize: 20,
       backgroundColor: 'white', 
       padding: 5, 
       borderColor: 'black', 

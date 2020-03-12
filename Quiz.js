@@ -244,9 +244,11 @@ export default class Quiz extends Component {
                 <Text style={this.state.results && this.state.word == this.state.results ? [styles.button, {color: 'yellow'}] : [styles.button]}>{this.state.results}</Text>
                 {this.state.word == this.state.results && <Check />}
 
-                <TouchableOpacity onPress={this._destroyRecognizer}>
-                  <Text style={{alignSelf: 'center', fontFamily: 'Chalkduster', fontSize: 35, color: 'white', marginLeft: -230, marginTop: 130}}>ERASE</Text>
-                </TouchableOpacity>
+                <View style={{marginTop: 310, position: 'absolute'}}>
+                  <TouchableOpacity style={{position: 'relative', marginLeft: 25, marginBottom: 45}} onPress={this._destroyRecognizer}>
+                    <Text style={{marginTop: 90, fontFamily: 'Chalkduster', fontSize: 40, color: 'white'}}>ERASE</Text>
+                  </TouchableOpacity>
+                </View>
 
               </ImageBackground>
               <ImageBackground source={require('./assets/deskLookingAtChalkboard.jpg')} style={{flex: 2}}>
@@ -272,7 +274,7 @@ const styles = StyleSheet.create({
   button: {
     color: 'white',
     fontFamily: 'Chalkduster',
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: 'bold',
     overflow: 'hidden',
     margin: 20,
