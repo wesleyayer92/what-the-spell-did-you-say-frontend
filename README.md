@@ -64,9 +64,9 @@ Wesley Ayer
   https://github.com/wesleyayer92
   
 Casey Fayard 
-  github.com/cfayard
+  https://github.com/cfayard
 
 Travis Franklin
-  github.com/Travis-Franklin
+   https://github.com/Travis-Franklin
 
 
