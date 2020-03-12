@@ -13,7 +13,8 @@ Wes, having a knack for foreign languages, found an api built by Merriam Webster
 that sparked an interest in developing an application that would teach kids how to spell.
 
 ## Screenshots
-
+![](assets/Screen%20Shot%202020-03-12%20at%201.37.40%20PM.png)
+![](assets/Screen%20Shot%202020-03-12%20at%201.41.09%20PM.png)
 
 ## Technologies Used
 
@@ -30,7 +31,7 @@ that sparked an interest in developing an application that would teach kids how 
 
 ## Features
 
-We used react native community modules, which gave us access to the iphone's speech recognition. Our app stands out because
+We used react native community modules, which gave us access to the iPhone's speech recognition. Our app stands out because
 it utilizes text-to-voice and voice-to-text technology that turns a string into sound, and takes a sound and turns it into
 a string. 
 
@@ -45,11 +46,6 @@ a string.
 - Within the speech-rec directory, cd .., npm run ios, this command should open your iPhone simulator and you should be up and running. 
 
 
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README.
-For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
 ## How to use?
 
 Create a username and password. Once you log-in, head over to the quiz page to begin. Click “Word”
@@ -57,11 +53,6 @@ to hear the word, “Definition” to hear the definition, and “Part of Speech
 Hold down the microphone button and spell the word, let go of the button once you have finished. If you make
 a mistake, no problem, just click the eraser to start over. Click submit to go to the next word. Once you finish, 
 you will be redirected to your scorecard page to see your current quiz score and your lifetime quiz score.
-
-
-## Contribute
-
-Let people know how they can contribute into your project. A contributing guideline will be a big plus.
 
 ## Credits
 
