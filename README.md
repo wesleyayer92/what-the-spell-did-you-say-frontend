@@ -1,5 +1,12 @@
 # What The SPELL Did You Say?!
 
+## Note
+
+Unfortunately as a first-time, self-taught React Native project, it is incredibly rough and unable to be put 
+on any platform where people can try it out. It was incredibly difficult to get set up for development for React Native without
+Expo which didn't have support for the modules we needed. As such the project is abandoned. A video of the project in action is
+available at [wesleyayer.com](wesleyayer.com)
+
 ## Description
 
 A learning application that helps you practice spelling. Using words from Scripps National Spelling Bee Competition, 
@@ -9,8 +16,8 @@ the library of words provided by Scripps.
 
 ## Motivation
 
-Wes, having a knack for foreign languages, found an api built by Merriam Websters' Collegiate Dictionary
-that sparked an interest in developing an application that would teach kids how to spell.
+Initially we had started with the idea of using an api built by Merriam Websters' Collegiate Dictionary
+which eventually turned into using lists of spelling be words to develop a mobile app that would test you on your spelling skill.
 
 ## Screenshots
 ![](assets/Screen%20Shot%202020-03-12%20at%201.37.40%20PM.png)
@@ -31,28 +38,8 @@ that sparked an interest in developing an application that would teach kids how 
 
 ## Features
 
-We used react native community modules, which gave us access to the iPhone's speech recognition. Our app stands out because
-it utilizes text-to-voice and voice-to-text technology that turns a string into sound, and takes a sound and turns it into
-a string. 
-
-## Installation
-
-- Mkdir, Git Clone both of these reposities into that directory: 
-    https://github.com/cfayard/spellingBee-backend
-    https://github.com/cfayard/speech-rec
-- Inside of each directory, npm install
-- Within the speech-rec directory, cd ios, pod-install
-- npm start within the spellingBee-backend directory
-- Within the speech-rec directory, cd .., npm run ios, this command should open your iPhone simulator and you should be up and running. 
-
-
-## How to use?
-
-Create a username and password. Once you log-in, head over to the quiz page to begin. Click “Word”
-to hear the word, “Definition” to hear the definition, and “Part of Speech” to hear the part of Speech. 
-Hold down the microphone button and spell the word, let go of the button once you have finished. If you make
-a mistake, no problem, just click the eraser to start over. Click submit to go to the next word. Once you finish, 
-you will be redirected to your scorecard page to see your current quiz score and your lifetime quiz score.
+We used react native community modules which utilize text-to-voice and voice-to-text
+so the app can evaluate your vocalized spelling of the word
 
 ## Credits
 
