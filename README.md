@@ -5,7 +5,7 @@
 Unfortunately as a first-time, self-taught React Native project, it is incredibly rough and unable to be put 
 on any platform where people can try it out. It was incredibly difficult to get set up for development for React Native without
 Expo which didn't have support for the modules we needed. As such the project is abandoned. A video of the project in action is
-available at [wesleyayer.com](wesleyayer.com)
+available at [wesleyayer.com](http://wesleyayer.com)
 
 ## Description
 
